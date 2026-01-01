@@ -2,15 +2,101 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{% block title %}Must/Want Task Manager{% endblock %}</title>
-	{% block extra_head %}{% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Must/Want Task Manager{% endblock %}</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-en: 'Jost', system-ui, -apple-system, sans-serif;
+            --font-ja: 'Zen Kaku Gothic New', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+            --color-bg-body: #f4f7fa;
+            --color-bg-card: #ffffff;
+            --color-text-main: #002B5B;
+            --color-must: #004CBF;
+            --color-want: #F1C40F;
+            --color-border: #e2e8f0;
+
+            --sidebar-width: 240px;
+            --content-max-width: 1280px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-ja);
+            background: var(--color-bg-body);
+            color: var(--color-text-main);
+            min-height: 100vh;
+        }
+        a { color: inherit; text-decoration: none; }
+        .wrapper {
+            display: grid;
+            grid-template-columns: var(--sidebar-width) 1fr;
+            min-height: 100vh;
+        }
+        .sidebar {
+            background: var(--color-bg-card);
+            border-right: 1px solid var(--color-border);
+            padding: 24px 20px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .brand {
+            font-family: var(--font-en);
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            font-size: 1.1rem;
+        }
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-weight: 500;
+        }
+        .main {
+            padding: 32px 40px;
+            max-width: var(--content-max-width);
+            width: 100%;
+            margin: 0 auto;
+        }
+        .card {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .must-pill { color: var(--color-must); font-weight: 700; }
+        .want-pill { color: var(--color-want); font-weight: 700; }
+        @media (max-width: 960px) {
+            .wrapper { grid-template-columns: 1fr; }
+            .sidebar { position: relative; height: auto; }
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
-	<main>
-		{% block content %}{% endblock %}
-	</main>
-	{% block extra_js %}{% endblock %}
+    <div class="wrapper">
+        <aside class="sidebar">
+            <div class="brand">Must/Want Task Manager</div>
+            <nav class="nav">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="/weekly/">Weekly</a>
+                <a href="/calendar/">Calendar</a>
+                <a href="/dashboard/">Dashboard</a>
+            </nav>
+            {% block sidebar_extra %}{% endblock %}
+        </aside>
+        <main class="main">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    {% block extra_js %}{% endblock %}
 </body>
 </html>
