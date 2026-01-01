@@ -35,7 +35,20 @@
             {% block sidebar_extra %}{% endblock %}
         </aside>
         <main class="main">
-            {% block content %}{% endblock %}
+            <header class="topbar">
+                <div class="topbar-left">
+                    <div class="topbar-today">今日</div>
+                    <div class="topbar-date">12/24 <span class="topbar-weekday">(金)</span></div>
+                </div>
+                <div class="topbar-nav">
+                    <button class="topbar-btn" aria-label="previous">‹</button>
+                    <button class="topbar-btn today">今日</button>
+                    <button class="topbar-btn" aria-label="next">›</button>
+                </div>
+            </header>
+            <div class="page-body">
+                {% block content %}{% endblock %}
+            </div>
         </main>
     </div>
     {% block extra_js %}{% endblock %}
