@@ -20,6 +20,9 @@ body {
 	color: var(--color-text-main);
 	min-height: 100vh;
 }
+h1, h2, h3, .font-en {
+	font-family: var(--font-en);
+}
 a { color: inherit; text-decoration: none; }
 
 .wrapper {
@@ -132,12 +135,10 @@ a { color: inherit; text-decoration: none; }
 	gap: 6px;
 }
 .topbar-today {
-	font-family: var(--font-en);
 	font-weight: 700;
 	font-size: 1.6rem;
 }
 .topbar-date {
-	font-family: var(--font-en);
 	font-weight: 700;
 	font-size: 1.6rem;
 }
